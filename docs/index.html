@@ -67,7 +67,7 @@
             <button onclick="addWord()">Add</button>
             <p id="count">Words added: 0/20</p>
             <button onclick="startPractice()" disabled id="start">Start Practice</button>
-            <button onclick="toggleReverse()">Reverse Translation: OFF</button>
+            <button onclick="toggleReverse()" id="reverse-btn">Reverse Translation: OFF</button>
         </div>
 
         <div id="practice">
@@ -85,8 +85,8 @@
     </div>
 
     <script>
-        let words = {};
-        let keys = [];
+        let words = {}; // Stores words and their translations
+        let keys = []; // Stores words for random selection
         let answeredCorrectly = new Set();
         let currentWord = "";
         let reverseMode = false;
@@ -121,7 +121,7 @@
                 document.getElementById("play-again").style.display = "block";
                 return;
             }
-            
+
             do {
                 currentWord = keys[Math.floor(Math.random() * keys.length)];
             } while (answeredCorrectly.has(currentWord));
@@ -171,7 +171,7 @@
 
         function toggleReverse() {
             reverseMode = !reverseMode;
-            let button = document.querySelector("#setup button:nth-of-type(2)");
+            let button = document.getElementById("reverse-btn");
             button.textContent = `Reverse Translation: ${reverseMode ? "ON" : "OFF"}`;
         }
 
